@@ -56,12 +56,11 @@ $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 			}
 		}
 
-		//json_encode($auth_call->TrackingResults)
 		http_response_code(200);
     print_r(json_encode([
 			"status"=> http_response_code(),
 			"message"=> "Success",
-			"payload" => $auth_call->TrackingResults
+			"payload" => $auth_call->TrackingResults->KeyValueOfstringArrayOfTrackingResultmFAkxlpY->Value->TrackingResult
 		]));
 	} catch (SoapFault $fault) {
 		die('Error : ' . $fault->faultstring);

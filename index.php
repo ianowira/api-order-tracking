@@ -1,7 +1,7 @@
 <?php
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: Content-Type');
+header('Access-Control-Allow-Origin: https://planet54-development.myshopify.com');
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	http_response_code(400);

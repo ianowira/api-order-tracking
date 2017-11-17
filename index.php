@@ -1,22 +1,32 @@
 <?php
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: application/json');
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	http_response_code(400);
 	print_r(json_encode([
-		"status"=> http_response_code(),
-		"message" => "Invalid Request Method"
+		'status' => http_response_code(),
+		'message' => 'Invalid Request Method'
 	]));
 	exit;
 }
+$entityBody = json_decode(file_get_contents('php://input'));
 
-if (! isset($_POST['tracking_number'])) {
-  http_response_code(401);
+if (! isset($entityBody)) {
+  http_response_code(422);
   print_r(json_encode([
-    "status"=> http_response_code(),
-    "message"=> "Unauthorized"
+    'status'=> http_response_code(),
+    'message'=> 'Invalid JSON'
+  ]));
+  exit;
+}
+
+if(! isset($entityBody->tracking_numbers)){
+  http_response_code(428 );
+  print_r(json_encode([
+    'status'=> http_response_code(),
+    'message'=> '\'tracking_numbers\' object missing'
   ]));
   exit;
 }
@@ -38,7 +48,7 @@ $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 									'Version'			 	=> 'v1.0'
 								),
 		'Transaction' => array('Reference1' => '001'),
-		'Shipments' => array($_POST['tracking_number'])
+		'Shipments' => $entityBody->tracking_numbers
 	);
 
 	// calling the method and printing results
@@ -58,11 +68,16 @@ $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 
 		http_response_code(200);
     print_r(json_encode([
-			"status"=> http_response_code(),
-			"message"=> "Success",
-			"payload" => $auth_call->TrackingResults->KeyValueOfstringArrayOfTrackingResultmFAkxlpY->Value->TrackingResult
+			'status' => http_response_code(),
+			'message'=> 'Success',
+			'payload' => $auth_call->TrackingResults->KeyValueOfstringArrayOfTrackingResultmFAkxlpY
 		]));
 	} catch (SoapFault $fault) {
-		die('Error : ' . $fault->faultstring);
+			http_response_code(500);
+			print_r(json_encode([
+				'status' => http_response_code(),
+				'message'=> 'Error, error, error!',
+				'payload' => $fault->faultstring
+			]));
 	}
 

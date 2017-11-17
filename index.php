@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 header('Access-Control-Request-Method: POST');
 header('Access-Control-Request-Headers: origin, x-requested-with');
 header('Origin: '. $_SERVER['REMOTE_ADDR']);
-header('Access-Control-Allow-Origin: https://planet54-development.myshopify.com, https://planet54-live.myshopify.com, https://planet54.com');
+header('Access-Control-Allow-Origin: '. $_SERVER['REMOTE_ADDR']);
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	http_response_code(400);

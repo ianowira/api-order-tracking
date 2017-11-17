@@ -1,5 +1,6 @@
 <?php
-
+var_dump($_SERVER);
+die();
 header('Content-Type: application/json');
 header('Access-Control-Request-Method: POST');
 header('Access-Control-Request-Headers: origin, x-requested-with');

@@ -40,9 +40,8 @@ foreach ($items as $key => $item) {
 	if($item->id === 0)
 		continue;
 	if(in_array($item->col2, $trackingNumbersArray)) {
-		$shipments[$item->col2][] = [];
+		$shipments[$item->col2] = [];
 		array_push($shipments[$item->col2], [
-			'waybill' => $item->col2,
 			'date' => $item->col1,
 			'reference_number' => $item->col3,
 			'description' => $item->col4,

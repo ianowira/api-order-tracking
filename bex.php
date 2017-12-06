@@ -39,7 +39,11 @@ $shipments = [];
 foreach ($items as $key => $item) {
 	if($item->id === 0)
 		continue;
-	if(in_array('PL'.$item->col3, $trackingNumbersArray)) {
+
+	if(empty($item->col2))
+		$item->col2 = 'PL' . $item->col3;
+
+	if(in_array($item->col2, $trackingNumbersArray)) {
 		$shipments[$item->col2][] = [
 			'waybill' => $item->col2,
 			'date' => $item->col1,

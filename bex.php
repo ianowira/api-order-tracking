@@ -42,10 +42,10 @@ foreach ($items as $key => $item) {
 
 	if(empty($item->col2))
 		$item->col2 = 'PL' . $item->col3;
-
+	$date = new DateTime($item->col1);
 	if(in_array($item->col2, $trackingNumbersArray)) {
 		$shipments[$item->col2][] = [
-			'date' => strtotime($item->col1),
+			'date' => $date->format('Y-m-d H:i:s'),
 			'reference_number' => $item->col3,
 			'description' => $item->col4,
 			'name' => $item->col5

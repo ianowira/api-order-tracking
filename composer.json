@@ -1,5 +1,6 @@
 {
     "require": {
-        "besimple/soap-client": "^0.2.6"
+        "besimple/soap-client": "^0.2.6",
+        "php": "^7.1.0"
     }
 }

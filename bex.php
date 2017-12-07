@@ -45,7 +45,7 @@ foreach ($items as $key => $item) {
 
 	if(in_array($item->col2, $trackingNumbersArray)) {
 		$shipments[$item->col2][] = [
-			'date' => $item->col1,
+			'date' => strtotime($item->col1),
 			'reference_number' => $item->col3,
 			'description' => $item->col4,
 			'name' => $item->col5

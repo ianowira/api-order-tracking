@@ -33,10 +33,10 @@ if(! isset($entityBody->tracking_company)) {
 require './vendor/autoload.php';
 
 switch ($entityBody->tracking_company) {
-	case 'Aramex':
+	case 'aramex':
 		require_once('./aramex.php');
 		break;
-	case 'Bex':
+	case 'bex':
 		require_once('./bex.php');
 		break;
 	default:

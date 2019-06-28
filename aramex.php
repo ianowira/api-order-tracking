@@ -30,14 +30,27 @@ $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 				]));
 				exit;
 			}
-		}
+    }
+
+    $payload = $auth_call->TrackingResults->KeyValueOfstringArrayOfTrackingResultmFAkxlpY;
+
+    if (!isset($payload)) {
+      http_response_code(404);
+      print_r(json_encode([
+        'status' => http_response_code(),
+        'message'=> 'Tracking currently is not available for this order.',
+        'payload' => null
+      ]));
+      return;
+    }
 
 		http_response_code(200);
     print_r(json_encode([
 			'status' => http_response_code(),
 			'message'=> 'Success',
-			'payload' => $auth_call->TrackingResults->KeyValueOfstringArrayOfTrackingResultmFAkxlpY
-		]));
+			'payload' => $payload
+    ]));
+    
 	} catch (SoapFault $fault) {
 			http_response_code(500);
 			print_r(json_encode([

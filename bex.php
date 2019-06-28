@@ -52,7 +52,15 @@ foreach ($items as $key => $item) {
 		];
 	}
 }
-
+if (empty($shipments)) {
+  http_response_code(404);
+  print_r(json_encode([
+    'status' => http_response_code(),
+    'message'=> 'Tracking currently is not available for this order.',
+    'payload' => null
+  ]));
+  return;
+}
 http_response_code(200);
 print_r(json_encode([
 	'status' => http_response_code(),

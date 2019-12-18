@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "d6e5bb0b1d1a5e6906ec932578f32352",
-    "content-hash": "57e0c5820bfb32c0c89ecf2d38d9b2f6",
+    "content-hash": "2799c65ce6296917251a41d464f4547e",
     "packages": [
         {
             "name": "ass/xmlsecurity",
@@ -65,7 +64,7 @@
                 "signature",
                 "xml"
             ],
-            "time": "2015-05-31 10:10:35"
+            "time": "2015-05-31T10:10:35+00:00"
         },
         {
             "name": "besimple/soap-client",
@@ -129,7 +128,7 @@
                 "soap",
                 "soap-client"
             ],
-            "time": "2014-08-18 09:45:53"
+            "time": "2014-08-18T09:45:53+00:00"
         },
         {
             "name": "besimple/soap-common",
@@ -190,7 +189,7 @@
                 "soap",
                 "soap-common"
             ],
-            "time": "2014-08-14 19:40:13"
+            "time": "2014-08-14T19:40:13+00:00"
         }
     ],
     "packages-dev": [],
@@ -199,6 +198,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.1.0"
+    },
     "platform-dev": []
 }

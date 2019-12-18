@@ -32,13 +32,16 @@ if(! isset($entityBody->tracking_company)) {
 
 require './vendor/autoload.php';
 
-switch ($entityBody->tracking_company) {
+switch (strtolower($entityBody->tracking_company)) {
 	case 'aramex':
 		require_once('./aramex.php');
 		break;
 	case 'bex':
 		require_once('./bex.php');
-		break;
+    break;
+  case 'fast furious':
+    require_once('./fastnfurious.php');
+    break;
 	default:
 		response(428,'Tracking Company not found.');
 		break;

@@ -5,12 +5,12 @@ $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 
 	$params = array(
 		'ClientInfo' => array(
-									'AccountCountryCode'	=> getenv('am_accountcountycode'),
-									'AccountEntity'		 	=> getenv('am_accountentity'),
-									'AccountNumber'		 	=> getenv('am_accountnumber'),
-									'AccountPin'		 	=> getenv('am_accountpin'),
-									'UserName'			 	=> getenv('am_username'),
-									'Password'			 	=> getenv('am_password'),
+									'AccountCountryCode'	=> $_ENV['am_accountcountycode'],
+									'AccountEntity'		 	=> $_ENV['am_accountentity'],
+									'AccountNumber'		 	=> $_ENV['am_accountnumber'],
+									'AccountPin'		 	=> $_ENV['am_accountpin'],
+									'UserName'			 	=> $_ENV['am_username'],
+									'Password'			 	=> $_ENV['am_password'],
 									'Version'			 	=> 'v1.0'
 								),
 		'Transaction' => array('Reference1' => '001'),

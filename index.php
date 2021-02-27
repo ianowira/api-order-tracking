@@ -32,6 +32,9 @@ if(! isset($entityBody->tracking_company)) {
 
 require './vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 switch (strtolower($entityBody->tracking_company)) {
 	case 'aramex':
 		require_once('./aramex.php');

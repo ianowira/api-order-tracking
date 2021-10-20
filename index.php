@@ -12,7 +12,7 @@ function response($statuscode ,$message) {
 	exit;
 }
 
-if($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	response(400,'Invalid Request Method');
 }
 
@@ -22,11 +22,11 @@ if (! isset($entityBody)) {
 	response(422,'Invalid JSON');
 }
 
-if(! isset($entityBody->tracking_numbers)) {
+if (! isset($entityBody->tracking_numbers)) {
   response(428,'\'tracking_numbers\' object missing');
 }
 
-if(! isset($entityBody->tracking_company)) {
+if (! isset($entityBody->tracking_company)) {
   response(428,'\'tracking_company\' name missing');
 }
 

@@ -1,8 +1,5 @@
 <?php 
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
 //track number = 40795800592
 $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 

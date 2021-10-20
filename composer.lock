@@ -64,6 +64,10 @@
                 "signature",
                 "xml"
             ],
+            "support": {
+                "issues": "https://github.com/aschamberger/XmlSecurity/issues",
+                "source": "https://github.com/aschamberger/XmlSecurity"
+            },
             "time": "2015-05-31T10:10:35+00:00"
         },
         {
@@ -128,6 +132,10 @@
                 "soap",
                 "soap-client"
             ],
+            "support": {
+                "issues": "https://github.com/BeSimple/BeSimpleSoapClient/issues",
+                "source": "https://github.com/BeSimple/BeSimpleSoapClient/tree/0.2"
+            },
             "time": "2014-08-18T09:45:53+00:00"
         },
         {
@@ -189,6 +197,9 @@
                 "soap",
                 "soap-common"
             ],
+            "support": {
+                "source": "https://github.com/BeSimple/BeSimpleSoapCommon/tree/0.2"
+            },
             "time": "2014-08-14T19:40:13+00:00"
         },
         {

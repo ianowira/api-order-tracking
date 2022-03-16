@@ -21,12 +21,15 @@ $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 	try {
 		$auth_call = $soapClient->TrackShipments($params);
 		if(isset($auth_call->Notifications->Notification)) {
-			if($auth_call->Notifications->Notification->Code === 'ERR01') {
+
+			if(
+				$auth_call->Notifications->Notification[0]->Code === 'ERR01' || $auth_call->Notifications->Notification[0]->Code === 'REQ03' ||
+				$auth_call->Notifications->Notification[1]->Code === 'REQ04' ) {
 				http_response_code(401);
 				print_r(json_encode([
 					"status"=> http_response_code(),
 					"message"=> "Unauthorized",
-					"payload" => $auth_call->Notifications->Notification->Message
+					"payload" => $auth_call->Notifications->Notification
 				]));
 				exit;
 			}
@@ -59,4 +62,3 @@ $soapClient = new SoapClient('shipments-tracking-api-wsdl.wsdl');
 				'payload' => $fault->faultstring
 			]));
 	}
-

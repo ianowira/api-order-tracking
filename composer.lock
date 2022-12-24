@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18c66700e915ff8120aad3a13bc18210",
+    "content-hash": "85ecd95473ac966a358a25d8305aa96a",
     "packages": [
         {
             "name": "ass/xmlsecurity",
@@ -679,7 +679,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.1.0"
+        "php": "^8"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

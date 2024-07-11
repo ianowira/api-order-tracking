@@ -15,32 +15,34 @@ header('Content-Type: application/json');
  */
 function cors() {
 
-	// Allow from any origin
 	if (isset($_SERVER['HTTP_ORIGIN'])) {
-			// Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
-			// you want to allow, and if so:
 			header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
 			header('Access-Control-Allow-Credentials: true');
-			header('Access-Control-Max-Age: 86400');    // cache for 1 day
+			header('Access-Control-Max-Age: 86400');
 	}
 
-	// Access-Control headers are received during OPTIONS requests
 	if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 			if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-					// may also be using PUT, PATCH, HEAD etc
-					header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
+                header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 
 			if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-					header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+				header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
 
 			exit(0);
 	}
-
 }
 
 cors();
 
+
+/**
+ *  Allow to out a response status after code has been executed
+ *
+ * @param int $statuscode
+ * @param string $message
+ * @return void
+ */
 function response($statuscode ,$message) {
 	http_response_code($statuscode);
 	print_r(json_encode([
@@ -53,6 +55,10 @@ function response($statuscode ,$message) {
 if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	response(400,'Invalid Request Method');
 }
+
+/**
+ * Fetch parameters from requests
+ */
 
 $entityBody = json_decode(file_get_contents('php://input'));
 
@@ -69,6 +75,9 @@ if(! isset($entityBody->tracking_company)) {
 }
 
 require './vendor/autoload.php';
+require_once('./fastnfurious.php');
+require_once('./bex.php');
+require_once('./aramex.php');
 
 if (file_exists(__DIR__ . '/.env')) {
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -77,13 +86,18 @@ if (file_exists(__DIR__ . '/.env')) {
 
 switch (strtolower($entityBody->tracking_company)) {
 	case 'aramex':
-		require_once('./aramex.php');
+        $aramex = new Aramex($entityBody);
+        $aramex->init();
 		break;
+
 	case 'bex':
-		require_once('./bex.php');
+        $bex = new Bex($entityBody);
+        $bex->init();
     break;
+
   case 'fast furious':
-    require_once('./fastnfurious.php');
+      $ff = new FF($entityBody);
+      $ff->init();
     break;
 	default:
 		response(428,'Tracking Company not found.');
